@@ -17,5 +17,4 @@ Feature:TC05_add user to register form
       | Destination | Title | Text_message |
       |volkan|Homework week 2|type code with cpp, sum of the two numbers|
       |Popescu|Homework week 2|type code with cpp, sum of the two numbers|
-      |anton|Homework week 2|type code with cpp, sum of the two numbers|
-      |sdinc|Homework week 2|type code with cpp, sum of the two numbers|
+

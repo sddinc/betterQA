@@ -1,6 +1,7 @@
 package Pages;
 
 import Utilities.Driver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -96,6 +97,30 @@ public class _Parent {
         dropdown.selectByVisibleText(country);
 
     }
+
+    public void alertAccept(Boolean value) throws InterruptedException {
+
+        Alert alert = driver.switchTo().alert();
+
+        if(value==true)
+        {
+            Thread.sleep(1000);
+            alert.accept();
+        }else{
+            Thread.sleep(000);
+            alert.dismiss();
+        }
+        // Capturing alert message.
+        //String alertMessage= driver.switchTo().alert().getText();
+
+        // Displaying alert message
+        //System.out.println(alertMessage);
+
+
+        // Accepting alert
+
+    }
+
     
     
 }
