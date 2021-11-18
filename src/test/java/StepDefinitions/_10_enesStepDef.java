@@ -36,29 +36,43 @@ public class _10_enesStepDef {
 //  office altindakiler->  //li[3]/ul[1]/li[*]/a[1]
         //1. for webelement size main category
         //2. for webelement size subcategory   /9/2/13/0/3/5/9//
+        //[class@='j-menu']//ul[1]//li[2]//a[1]
+       // (//div//ul//li[1]//li//a)[4]
+
+        String scolar="//header/div[1]/div[3]/div[2]/ul[1]/li[1]/a[1]/span[1]";
+        Driver.hover(Driver.getDriver().findElement(By.xpath(scolar)));
+        List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//div//ul//li[1]//li//a"));
+        int x=listOfElements.size();
+
+        for (int i = 0; i <x; i++) {
+            System.out.println(listOfElements.get(i).getText());
+
+        }
 
 
 
 
 
 
+/*
 
         for (int i = 1; i < 9; i++) {
 
-            List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//li["+i+"]/ul[1]/li"));
+            List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//li["+i+"]/ul[1]/li[*]"));
 
             for (int j = 1; j <listOfElements.size() ; j++) {
 
                 String menuElements ="//li["+i+"]/ul[1]/li["+j+"]/a[1]";
 
                 Driver.hover(Driver.getDriver().findElement(By.xpath(menuElements)));
+               Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(menuElements)));
                // Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),1);
                // Driver.getDriver().navigate().back();
             }
 
         }
 
-
+*/
 
 
 
