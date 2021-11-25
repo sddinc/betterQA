@@ -25,13 +25,24 @@ public class _10_enesStepDef {
     public void userClickToCategories() throws InterruptedException {
 
          List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//div[@id='content']//div//ul//li//a"));
+         List<WebElement> listOfproduct = Driver.getDriver().findElements(By.xpath("//div[@class='name']//a"));
 
     //    Thread.sleep(10);
 //50 left side nr of the products
         Driver.getDriver().findElement(By.xpath("//button[@class='btn notification-close']")).click();
-        for (int i = 20; i <=30; i++) {
+        for (int i = 1; i <=10; i++) {
             String menuElements ="(//div[@id='content']//div//ul//li//a)["+i+"]";
             Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),5);
+
+
+            System.out.println("-----------------------"+Driver.getDriver().findElement(By.xpath(" //h1[@class='title page-title']")).getText());
+            for (int j = 1; j <=5; j++) {
+                String productName ="(//div[@class='name']//a)["+j+"]";
+
+
+                System.out.println(Driver.getDriver().findElement(By.xpath(productName)).getText());
+
+            }
             Driver.getDriver().navigate().back();
 
         }
