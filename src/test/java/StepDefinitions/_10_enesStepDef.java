@@ -7,6 +7,7 @@ import cucumber.api.java.en.Given;
 import org.apache.poi.ss.usermodel.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -23,27 +24,38 @@ public class _10_enesStepDef {
         Driver.getDriver().get(url);
     }
     @And("^user click to categories$")
-    public void userClickToCategories() {
+    public void userClickToCategories() throws InterruptedException {
 
 
 
 
 
-        List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//li[*]/ul[1]/li[*]"));
+         List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//div[@id='content']//div//ul//li//a"));
+
+
+
+        Thread.sleep(10);
+        //Driver.getDriver().findElement(By.className("btn notification-close")).click();
+       // Driver.waitAndClick(Driver.getDriver().findElement(By.className("btn notification-close")),2);
+       //
 
 
         for (int i = 1; i <=listOfElements.size(); i++) {
 
-            String menuElements ="(//li[*]/ul[1]/li[*])["+i+"]";
+
+            String menuElements ="(//div[@id='content']//div//ul//li//a)["+i+"]";
+//
+//            Actions actions = new Actions(Driver.getDriver());
+//            actions.moveToElement(Driver.getDriver().findElement(By.xpath(menuElements)));
+//           // actions.click();
+//           actions.perform();
+
+
+
             Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),5);
-           // Driver.hover(Driver.getDriver().findElement(By.xpath(menuElements)));
-
-            //String pruductList="(//div[@id='content']//a)[1]";
-
-           // String str1=Driver.getDriver().findElement(By.xpath(pruductList)).getText();
-           // System.out.println(str1);
+            Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(menuElements)));
             Driver.getDriver().navigate().back();
-            // System.out.println(i+"-"+listOfElements.get(i).getText());
+
 
         }
 
