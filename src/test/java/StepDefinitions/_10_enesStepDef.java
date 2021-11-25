@@ -26,14 +26,14 @@ public class _10_enesStepDef {
 
          List<WebElement> listOfElements = Driver.getDriver().findElements(By.xpath("//div[@id='content']//div//ul//li//a"));
 
-        Thread.sleep(10);
-
-        for (int i = 1; i <=listOfElements.size(); i++) {
+    //    Thread.sleep(10);
+//50 left side nr of the products
+        Driver.getDriver().findElement(By.xpath("//button[@class='btn notification-close']")).click();
+        for (int i = 20; i <=30; i++) {
             String menuElements ="(//div[@id='content']//div//ul//li//a)["+i+"]";
-            Driver.hover(Driver.getDriver().findElement(By.xpath(menuElements)));
-            Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(menuElements)));
             Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),5);
             Driver.getDriver().navigate().back();
+
         }
 
     }
