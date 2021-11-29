@@ -3,34 +3,27 @@ package StepDefinitions;
 import java.util.Scanner;
 
 public class test1 {
-
-
         public static String StringChallenge(String str) {
-            // code goes here
-
+            // code goes here ((c>='a' && c<='z') || (c>='A' && c <='Z'))
+            //cats AND*Dogs-are Awesome
+            int []indeks=new int [100];
             String str2="";
             for(int i=0;i<str.length();i++){
                 char c=str.charAt(i);
+                if(c==' ' || !Character.isLetter(c) ){
+                   // indeks[i]=i;
+                        str2=str2+ String.valueOf(Character.toUpperCase( str.charAt(i)));
 
 
 
 
-                if(c==' ' || !((c>='a' && c<='z') || (c>='A' && c <='Z')) ){
-
-
-
-                    str2=str2+ String.valueOf(Character.toUpperCase( str.charAt(i+1)));
                 }else{
 
                     str2=str2+ String.valueOf(Character.toLowerCase( str.charAt(i)));
                     // str2=str2+String.valueOf(c);
                 }
-
-
             }
-
             str=str2;
-
             return str;
         }
 
