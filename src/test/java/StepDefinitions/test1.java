@@ -12,7 +12,7 @@ public class test1 {
                 char c=str.charAt(i);
                 if(c==' ' || !Character.isLetter(c) ){
                    // indeks[i]=i;
-                   // str2=str.replace(
+                   // str2=str.replace(c,'');
                     str2=str.replaceAll("",String.valueOf(c));
                         //str2=str2+ String.valueOf(Character.toUpperCase( str.charAt(i)));
 
