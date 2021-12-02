@@ -34,55 +34,18 @@ public class _10_enesStepDef {
          List<WebElement> modelNo = Driver.getDriver().findElements(By.xpath("//span[@class='stat-2']//span"));
 
           Driver.getDriver().findElement(By.xpath("//button[@class='btn notification-close']")).click();
-int maxnr=0;
 
-          int arr[]= new int[listOfElements.size()];
-        for (int a = 1; a < 3; a++) {
-            if(a==29){
-                a++;
-            }
-            String menuElements ="(//div[@id='content']//div//ul//li//a)["+a+"]";
-            System.out.println("a="+a);
-            Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),5);
-            Driver.waitAndClick(Driver.getDriver().findElement(By.cssSelector("button#btn-list-view")),5);
-            String limit ="#input-limit";
-            Select limitProduct= new Select(Driver.getDriver().findElement(By.cssSelector(limit)));
-            limitProduct.selectByVisibleText("100");
-
-
-            boolean cv= Driver.waitForInVisibility(By.cssSelector("(//h3[@class='title module-title'])[2]"),5);
-            Driver.getDriver().findElement(By.xpath("//h3[@class='title module-title'])[2]")).isDisplayed()
-            int b=1;
-            while(!cv){
-              if(cv){
-                    Driver.getDriver().navigate().back();
-                }
-
-                String productName ="(//div[@class='name']//a)["+b+"]";
-                b++;
-                System.out.println("b="+b);
-                Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(productName)));
-
-
-        }
-            arr[a]=b;
-            System.out.println("array index="+arr[a]);
-            Driver.getDriver().navigate().back();
-        }
+           // boolean cv= Driver.waitForInVisibility(By.cssSelector("(//h3[@class='title module-title'])[2]"),5);
+           // boolean cv=Driver.getDriver().findElement(By.xpath("//h3[@class='title module-title'])[2]")).isDisplayed();
+int arr[]= {35,35,73,68,57,61,8,9,20,12,29,100,100,100,100,100,100};
 
 
 
-
-
-
-
-
-        for (int i = 1; i <=3; i++) {
+        for (int i = 11; i <=listOfElements.size(); i++) {
             if(i==29){
                 i++;
             }
             String menuElements ="(//div[@id='content']//div//ul//li//a)["+i+"]";
-            System.out.println("i="+i);
             Driver.waitAndClick(Driver.getDriver().findElement(By.xpath(menuElements)),5);
             Driver.waitAndClick(Driver.getDriver().findElement(By.cssSelector("button#btn-list-view")),5);
             String limit ="#input-limit";
@@ -99,16 +62,34 @@ int maxnr=0;
                 String priceList ="(//div[@class='price'])["+j+"]";
                 String modelList ="(//span[@class='stat-2'])["+j+"]";
 
-                System.out.println("j="+j);
-               Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(productName)));
+                System.out.println("i-j="+i+"-"+j);
+                Driver.waitForVisibility(Driver.getDriver().findElement(By.xpath(productName)),4);
+
+               Driver.hover(Driver.getDriver().findElement(By.xpath(productName)));
+              // Driver.scrollToElement(Driver.getDriver().findElement(By.xpath(productName)));
                 System.out.println(Driver.getDriver().findElement(By.xpath(productName)).getText());
                 System.out.println(Driver.getDriver().findElement(By.xpath(descriptionList)).getText());
                 System.out.println(Driver.getDriver().findElement(By.xpath(priceList)).getText());
                 System.out.println(Driver.getDriver().findElement(By.xpath(modelList)).getText());
                System.out.println(Driver.getDriver().findElement(By.xpath(imageAdressLink)).getAttribute("src"));
 
+
+
+/*
+                //boolean endPoint=Driver.getDriver().findElement(By.xpath("//div[@class='ias-noneleft']")).isDisplayed();
+                boolean endPoint=Driver.getDriver().findElement(By.xpath("//h3[@class='title module-title'])[2]")).isDisplayed();
+
+                if(endPoint){
+                Driver.getDriver().get("https://escar.ro/index.php?route=information/sitemap");
+
+                   // break;
+                }
+*/
+
             }
-            Driver.getDriver().navigate().back();
+            Driver.getDriver().get("https://escar.ro/index.php?route=information/sitemap");
+
+            //Driver.getDriver().navigate().back();
         }
 
     }
