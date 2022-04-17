@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>enesKirtasiye</artifactId>
+    <artifactId>betterQA</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -115,6 +115,12 @@
             <artifactId>testng</artifactId>
             <version>7.1.0</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>4.3.0</version>
         </dependency>
 
 
