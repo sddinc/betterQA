@@ -22,7 +22,7 @@ public class topMovieStepDef {
         Driver.getDriver().get(url);
     }
 
-    @And("^user verifies all movie card is dsiplayed$")
+    @And("^user verifies all movie card is displayed$")
     public void userVerifiesAllMovieTitleIsDsiplayed() {
         List<WebElement> movieImageList = Driver.getDriver().findElements(By.xpath("//div[@class='jss89 movie-image']"));
         List<WebElement> movieTitleList = Driver.getDriver().findElements(By.xpath("//h2"));
@@ -30,10 +30,10 @@ public class topMovieStepDef {
         List<WebElement> movieMoreList = Driver.getDriver().findElements(By.xpath("//span[@class='jss95']"));
 
         for (int i = 1; i <movieTitleList.size() ; i++) {
-            Assert.assertTrue("Title not Displayed",Driver.getDriver().findElement(By.xpath("(//h2)["+i+"]")).isDisplayed());
-            Assert.assertTrue("Image not Displayed",Driver.getDriver().findElement(By.xpath("(//div[@class='jss89 movie-image'])["+i+"]")).isDisplayed());
-            Assert.assertTrue("Description  Displayed",Driver.getDriver().findElement(By.xpath("(//p[@class='jss39 jss48'])["+i+"]")).isDisplayed());
-            Assert.assertTrue("Button more not Displayed",Driver.getDriver().findElement(By.xpath("(//span[@class='jss95'])["+i+"]")).isDisplayed());
+            Assert.assertTrue("Title is not Displayed",Driver.getDriver().findElement(By.xpath("(//h2)["+i+"]")).isDisplayed());
+            Assert.assertTrue("Image is not Displayed",Driver.getDriver().findElement(By.xpath("(//div[@class='jss89 movie-image'])["+i+"]")).isDisplayed());
+            Assert.assertTrue("Description is displayed",Driver.getDriver().findElement(By.xpath("(//p[@class='jss39 jss48'])["+i+"]")).isDisplayed());
+            Assert.assertTrue("More button is not Displayed",Driver.getDriver().findElement(By.xpath("(//span[@class='jss95'])["+i+"]")).isDisplayed());
 
         }
     }
@@ -75,8 +75,22 @@ public class topMovieStepDef {
     @Then("^verifies that the movie name \"([^\"]*)\" Released on \"([^\"]*)\" popularity \"([^\"]*)\" vote average \"([^\"]*)\" and vote \"([^\"]*)\"$")
     public void verifiesThatTheMovieNameReleasedOnPopularityVoteAverageAndVote(String movieName, String released, String popularity, String voteAverage, String voteCount){
         Driver.getDriver().get("https://top-movies-qhyuvdwmzt.now.sh/");
-        Driver.waitAndClick(topMovie.learnMoreLink,2);
+        Driver.waitAndSendText(topMovie.searchBox,movieName,2);
+        topMovie.searchBox.sendKeys(Keys.ENTER);
         Driver.wait(2);
+
+        List<WebElement> movieTitleList = Driver.getDriver().findElements(By.xpath("//h2"));
+        for (int i = 1; i <movieTitleList.size() ; i++){
+           if(movieTitleList.get(i).getText().equals(movieName)){
+               Driver.getDriver().findElement(By.xpath("(//span[text()='Learn More'])["+i+"]")).click();
+            }
+
+        }
+
+
+       //Driver.waitAndClick(topMovie.learnMoreLink,2);
+        Driver.wait(2);
+
         Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[1]")).getAttribute("value").contains(released));
         Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[2]")).getAttribute("value").contains(popularity));
         Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[3]")).getAttribute("value").contains(voteAverage));

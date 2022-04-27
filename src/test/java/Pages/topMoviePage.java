@@ -21,7 +21,7 @@ public class topMoviePage {
     @FindBy(xpath = "//span[@class='jss95']")
     public WebElement learnMoreLink;
 
-    @FindBy(xpath = "(//span[@class='jss95'])[2]")
+    @FindBy(xpath = "(//span[@class='jss95'])[1]")
     public WebElement redeptionMovie ;
 
     @FindBy(xpath = "(//input[@type='text'])[1]")
@@ -29,9 +29,5 @@ public class topMoviePage {
 
     @FindBy(xpath = "//*[text()='Close']")
     public WebElement closeButton;
-
-
-
-
 
 }
