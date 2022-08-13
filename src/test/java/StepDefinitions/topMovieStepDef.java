@@ -15,10 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class topMovieStepDef {
-    Pages.topMoviePage topMovie =new Pages.topMoviePage();
+    Pages.topMoviePage topMovie = new Pages.topMoviePage();
 
     @Given("^User go to site \"([^\"]*)\"$")
-    public void userGoToSite(String url)  {
+    public void userGoToSite(String url) {
         Driver.getDriver().get(url);
     }
 
@@ -29,72 +29,71 @@ public class topMovieStepDef {
         List<WebElement> movieDescriptiionList = Driver.getDriver().findElements(By.xpath("//p[@class='jss39 jss48']"));
         List<WebElement> movieMoreList = Driver.getDriver().findElements(By.xpath("//span[@class='jss95']"));
 
-        for (int i = 1; i <movieTitleList.size() ; i++) {
-            Assert.assertTrue("Title is not Displayed",Driver.getDriver().findElement(By.xpath("(//h2)["+i+"]")).isDisplayed());
-            Assert.assertTrue("Image is not Displayed",Driver.getDriver().findElement(By.xpath("(//div[@class='jss89 movie-image'])["+i+"]")).isDisplayed());
-            Assert.assertTrue("Description is displayed",Driver.getDriver().findElement(By.xpath("(//p[@class='jss39 jss48'])["+i+"]")).isDisplayed());
-            Assert.assertTrue("More button is not Displayed",Driver.getDriver().findElement(By.xpath("(//span[@class='jss95'])["+i+"]")).isDisplayed());
+        for (int i = 1; i < movieTitleList.size(); i++) {
+            Assert.assertTrue("Title is not Displayed", Driver.getDriver().findElement(By.xpath("(//h2)[" + i + "]")).isDisplayed());
+            Assert.assertTrue("Image is not Displayed", Driver.getDriver().findElement(By.xpath("(//div[@class='jss89 movie-image'])[" + i + "]")).isDisplayed());
+            Assert.assertTrue("Description is displayed", Driver.getDriver().findElement(By.xpath("(//p[@class='jss39 jss48'])[" + i + "]")).isDisplayed());
+            Assert.assertTrue("More button is not Displayed", Driver.getDriver().findElement(By.xpath("(//span[@class='jss95'])[" + i + "]")).isDisplayed());
 
         }
     }
 
     @And("^user verify movie \"([^\"]*)\" make sure the release date \"([^\"]*)\" is correctly displayed\\.$")
-    public void userVerifyMovieMakeSureTheReleaseDateIsCorrectlyDisplayed(String checkMovie, String ReleasedDate)  {
+    public void userVerifyMovieMakeSureTheReleaseDateIsCorrectlyDisplayed(String checkMovie, String ReleasedDate) {
         topMovie.redeptionMovie.click();
         Driver.wait(2);
-        Driver.waitForVisibility(topMovie.releasedActual,2);
+        Driver.waitForVisibility(topMovie.releasedActual, 2);
         System.out.println(topMovie.releasedActual.getText());
-        boolean isReleased=topMovie.releasedActual.getText().contains(ReleasedDate);
-        Assert.assertFalse("Released date not same",isReleased);// expected is false
+        boolean isReleased = topMovie.releasedActual.getText().contains(ReleasedDate);
+        Assert.assertFalse("Released date not same", isReleased);// expected is false
         Driver.wait(2);
         topMovie.closeButton.click();
     }
 
     @And("^user search for \"([^\"]*)\" and make sure that \"([^\"]*)\" is displayed and \"([^\"]*)\" is not displayed$")
-    public void userSearchForAndMakeSureThatIsDisplayedAndIsNotDisplayed(String searchForMovie, String displayedMovie, String notDisplayedMovie)  {
-        Driver.waitAndSendText(topMovie.searchBox,searchForMovie,2);
+    public void userSearchForAndMakeSureThatIsDisplayedAndIsNotDisplayed(String searchForMovie, String displayedMovie, String notDisplayedMovie) {
+        Driver.waitAndSendText(topMovie.searchBox, searchForMovie, 2);
         topMovie.searchBox.sendKeys(Keys.ENTER);
         boolean isDisplayedMovie = false;
-        boolean isNotDisplayed=true;
+        boolean isNotDisplayed = true;
         List<WebElement> movieTitleList = Driver.getDriver().findElements(By.xpath("//h2"));
-        for (int i = 1; i <movieTitleList.size() ; i++){
-             if(Driver.getDriver().findElement(By.xpath("(//h2)["+i+"]")).getText().equalsIgnoreCase(displayedMovie)){
-                     isDisplayedMovie =true;
-             }
-             else if(Driver.getDriver().findElement(By.xpath("(//h2)["+i+"]")).getText().equalsIgnoreCase(notDisplayedMovie)){
-                    isNotDisplayed =false;
-                }
+        for (int i = 1; i < movieTitleList.size(); i++) {
+            if (Driver.getDriver().findElement(By.xpath("(//h2)[" + i + "]")).getText().equalsIgnoreCase(displayedMovie)) {
+                isDisplayedMovie = true;
+            } else if (Driver.getDriver().findElement(By.xpath("(//h2)[" + i + "]")).getText().equalsIgnoreCase(notDisplayedMovie)) {
+                isNotDisplayed = false;
+            }
         }
-        Assert.assertTrue("Movie found",isDisplayedMovie);
+        Assert.assertTrue("Movie found", isDisplayedMovie);
         Driver.wait(1);
-        Assert.assertTrue("Movie not found",isNotDisplayed);
+        Assert.assertTrue("Movie not found", isNotDisplayed);
 
     }
 
 
     @Then("^verifies that the movie name \"([^\"]*)\" Released on \"([^\"]*)\" popularity \"([^\"]*)\" vote average \"([^\"]*)\" and vote \"([^\"]*)\"$")
-    public void verifiesThatTheMovieNameReleasedOnPopularityVoteAverageAndVote(String movieName, String released, String popularity, String voteAverage, String voteCount){
+    public void verifiesThatTheMovieNameReleasedOnPopularityVoteAverageAndVote(String movieName, String released, String popularity, String voteAverage, String voteCount) {
         Driver.getDriver().get("https://top-movies-qhyuvdwmzt.now.sh/");
-        Driver.waitAndSendText(topMovie.searchBox,movieName,2);
+        Driver.waitAndSendText(topMovie.searchBox, movieName, 2);
         topMovie.searchBox.sendKeys(Keys.ENTER);
         Driver.wait(2);
 
         List<WebElement> movieTitleList = Driver.getDriver().findElements(By.xpath("//h2"));
-        for (int i = 1; i <movieTitleList.size() ; i++){
-           if(movieTitleList.get(i).getText().equals(movieName)){
-               Driver.getDriver().findElement(By.xpath("(//span[text()='Learn More'])["+i+"]")).click();
+        for (int i = 1; i < movieTitleList.size(); i++) {
+            if (movieTitleList.get(i).getText().equals(movieName)) {
+                Driver.getDriver().findElement(By.xpath("(//span[text()='Learn More'])[" + i + "]")).click();
             }
 
         }
 
 
-       //Driver.waitAndClick(topMovie.learnMoreLink,2);
+        //Driver.waitAndClick(topMovie.learnMoreLink,2);
         Driver.wait(2);
 
-        Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[1]")).getAttribute("value").contains(released));
-        Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[2]")).getAttribute("value").contains(popularity));
-        Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[3]")).getAttribute("value").contains(voteAverage));
-        Assert.assertTrue("wrong released",Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[4]")).getAttribute("value").contains(voteCount));
+        Assert.assertTrue("wrong released", Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[1]")).getAttribute("value").contains(released));
+        Assert.assertTrue("wrong released", Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[2]")).getAttribute("value").contains(popularity));
+        Assert.assertTrue("wrong released", Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[3]")).getAttribute("value").contains(voteAverage));
+        Assert.assertTrue("wrong released", Driver.getDriver().findElement(By.xpath("(//input[@class='jss71 jss73'])[4]")).getAttribute("value").contains(voteCount));
     }
 
 
